@@ -22,7 +22,7 @@ public class Account {
       */
         public Account(double initialBalance,String givenUser)
         {
-            if (initialBalance > 50){
+            if (initialBalance >= 50){
 				balance=initialBalance;
 				user=givenUser;
 				System.out.println("Account Created");
@@ -32,6 +32,12 @@ public class Account {
             //Note that the initial balance must be greater than 50.       
         }
 
+		public void applyInterest(int months){
+			for (int i = 0; i < months; i++){
+				applyInterest();
+			}
+		}
+		
 		public void applyInterest(){
 			credit(percentToDecimal(getInterestRate()) * getBalance());
 		}

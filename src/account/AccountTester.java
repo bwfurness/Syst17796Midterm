@@ -35,6 +35,8 @@ public class AccountTester {
 			System.out.println("The InterestRate per month is "+a.getInterestRate());
 			a.applyInterest();
 			System.out.println("The balance after applying interest is: " + a.getBalance());
+			a.applyInterest(11); // apply the interest over 11 more months.
+			System.out.printf("The balance after applying interest for one year is: %.2f", a.getBalance());
 		} catch (IllegalArgumentException e){
 			System.out.println("Unable to create account: " + e.getMessage());
 		}
