@@ -18,16 +18,33 @@ public class Account {
  
      /**constructor that takes the initial balance
       * @param initialBalance 
+	  * @param givenUser
       */
         public Account(double initialBalance,String givenUser)
         {
-            balance=initialBalance;
-            user=givenUser;
+            if (initialBalance > 50){
+				balance=initialBalance;
+				user=givenUser;
+				System.out.println("Account Created");
+			}else{
+				throw new IllegalArgumentException("Initial balance must be greater than 50"); // throwing an exception because as this is a creator, and we cannot simply return null.
+			}
             //Note that the initial balance must be greater than 50.       
         }
 
+		public void applyInterest(){
+			credit(percentToDecimal(getInterestRate()) * getBalance());
+		}
+		
+		private double percentToDecimal(double percent){
+			return percent / 100; // just so that if something changes with percent we can use it in one spot.
+		}
+		
      /**The method for depositing amount and 
-      * updating balance*/
+      * updating balance
+	  * 
+	  * @param amount
+	  */
         public void credit(double amount)
         {
             balance=getBalance()+amount;

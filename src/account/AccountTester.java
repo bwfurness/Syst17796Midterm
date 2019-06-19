@@ -25,10 +25,18 @@ public class AccountTester {
         sc.nextLine();
         String user=sc.nextLine();
         
-        Account a=new Account(bal,user);
-        ac[0]=a;
-             
-        System.out.println("The balance is: "+a.getBalance());  
-        System.out.println("The InterestRate per month is "+a.getInterestRate());
+		// it doesn't explicitly say to, but I'm going to give an error message if the arguments are illegal.
+		// this will work even if the arguments being illegal change.
+		try {
+			Account a=new Account(bal,user);
+			ac[0]=a;
+
+			System.out.println("The balance is: "+a.getBalance());  
+			System.out.println("The InterestRate per month is "+a.getInterestRate());
+			a.applyInterest();
+			System.out.println("The balance after applying interest is: " + a.getBalance());
+		} catch (IllegalArgumentException e){
+			System.out.println("Unable to create account: " + e.getMessage());
+		}
     }
 }
